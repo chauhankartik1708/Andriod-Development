@@ -6,50 +6,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kartiksinghchauhan.transformation.MainActivity">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:rowCount="3"
+            android:columnCount="3"
+            >
+                <Button
+                    android:text="Start"
+                    android:id="@+id/start_button"
+                    android:onClick="Click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="Stage 2"
+                    android:id="@+id/stage2_button"
+                    android:onClick="Click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="Stage 3"
+                    android:id="@+id/stage3_button"
+                    android:onClick="Click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="Stage 4"
+                    android:onClick="Click"
+                    android:id="@+id/stage4_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="Stage 5"
+                    android:onClick="Click"
+                    android:id="@+id/stage5_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="Stage 6"
+                    android:onClick="Click"
+                    android:id="@+id/stage6_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-    <RadioGroup
-        android:layout_marginTop="15sp"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+                <Button
+                    android:text="Stage 7"
+                    android:onClick="Click"
+                    android:id="@+id/stage7_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="Stage 8"
+                    android:onClick="Click"
+                    android:id="@+id/stage8_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="Stage 9"
+                    android:onClick="Click"
+                    android:id="@+id/stage9_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-        <RadioButton
-            android:text="Start"
-            android:checked="true"
-            android:id="@+id/start_button"
-            android:onClick="radioClick"
-            android:layout_marginRight="10px"
+        </GridLayout>
+
+        <Button
+            android:text="Current"
+            android:onClick="Click"
+            android:layout_gravity="center"
+            android:id="@+id/current_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <RadioButton
-            android:text="Stage 2"
-            android:checked="false"
-            android:id="@+id/stage2_button"
-            android:onClick="radioClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <RadioButton
-            android:text="Stage 3"
-            android:checked="false"
-            android:id="@+id/stage3_button"
-            android:onClick="radioClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <RadioButton
-            android:text="Stage 4"
-            android:checked="false"
-            android:onClick="radioClick"
-            android:id="@+id/stage4_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RadioGroup>
+
+
+
         <ImageView
             android:id="@+id/picture"
-            android:layout_marginTop="30sp"
+            android:layout_marginTop="20sp"
             android:layout_width="match_parent"
             android:layout_height="400sp"
-            android:src="@drawable/start" />
+            android:src="@drawable/current" />
 
 
 </LinearLayout>
