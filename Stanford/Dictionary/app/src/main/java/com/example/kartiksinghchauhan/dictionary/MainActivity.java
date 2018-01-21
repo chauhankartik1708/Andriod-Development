@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -155,5 +156,17 @@ public class MainActivity extends SimpleActivity {
 
         }
 
+    }
+
+    public void muteOnClick(View view) {
+        Button btn = $B(R.id.mute_button);
+        String bttn = btn.getText().toString();
+        if(bttn.equals("Mute ON")){
+            mp.pause();
+            btn.setText("Mute OFF");
+        }else if(bttn.equals("Mute OFF")){
+            mp.start();
+            btn.setText("Mute ON");
+        }
     }
 }
