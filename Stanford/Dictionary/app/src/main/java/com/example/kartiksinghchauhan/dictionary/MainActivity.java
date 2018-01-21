@@ -1,5 +1,8 @@
 package com.example.kartiksinghchauhan.dictionary;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +23,10 @@ import stanford.androidlib.SimpleList;
 
 
 public class MainActivity extends SimpleActivity {
-
-
+    private static final int REQ_CODE_ADD_WORD = 1234;
+    private int highScore;
+    private int points;
+    private MediaPlayer mp;
     private Map<String,String> dictionary;
     private List<String> words;
     private void chooseWords(){
@@ -68,27 +73,87 @@ public class MainActivity extends SimpleActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTraceLifecycle(true);
+        points = 0;
         dictionary = new HashMap<>();
         words = new ArrayList<>();
 
         readFileData();
         chooseWords();
-        ListView list = (ListView) findViewById(R.id.mylist);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String defnClicked = parent.getItemAtPosition(position).toString();
+        $LV(R.id.mylist).setOnItemClickListener(this);
+
+        SharedPreferences prefs = getSharedPreferences("myprefs",MODE_PRIVATE);
+        highScore = prefs.getInt("highScore",0);
+
+        mp = MediaPlayer.create(this, R.raw.raja);
+        mp.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mp.start();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("points",points);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        points = savedInstanceState.getInt("points",0);
+    }
+
+    @Override
+            public void onItemClick(ListView list,int index) {
+                String defnClicked = list.getItemAtPosition(index).toString();
                 String theWord = $TV(R.id.the_word).getText().toString();
                 String correctDefn = dictionary.get(theWord);
                 if(defnClicked.equals(correctDefn)){
-                    toast("AWESOME");
+                    points++;
+                    if(points > highScore){
+                        highScore = points;
+                        SharedPreferences prefs = getSharedPreferences("myprefs",MODE_PRIVATE);
+                        SharedPreferences.Editor prefsEditor = prefs.edit();
+                        prefsEditor.putInt("highScore",highScore);
+                        prefsEditor.apply();
+                    }
+                    toast("AWESOME ! Score = " + points + ", HighScore = " + highScore);
                 }else{
-                    toast("Chutiya Hai kya");
+                    points--;
+                    toast("Chutiya Hai kya ! Score = " + points + ", HighScore = " + highScore);
                 }
                 chooseWords();
             }
-        });
+
+
+    public void addANewWord(View view) {
+        Intent intent = new Intent(this,AddWordActivity.class);
+        startActivityForResult(intent,REQ_CODE_ADD_WORD);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        try {
+            if (requestCode == REQ_CODE_ADD_WORD) {
+                String newWord = intent.getStringExtra("newword");
+                String newDefn = intent.getStringExtra("newdefn");
+
+                toast("You added the word: " + newWord);
+            }
+        }catch(Exception e){
+
+        }
 
     }
 }

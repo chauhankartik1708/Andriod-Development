@@ -1,5 +1,6 @@
 package com.example.kartiksinghchauhan.dictionary;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ public class AddWordActivity extends SimpleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_word);
+        setTraceLifecycle(true);
     }
 
     public void addThisWordClick(View view){
@@ -23,6 +25,14 @@ public class AddWordActivity extends SimpleActivity {
         PrintStream output = new PrintStream(openFileOutput("added_words.txt",MODE_PRIVATE | MODE_APPEND));
         output.println(newword + "@" + newdefn);
         output.close();
+    try {
+        Intent goBack = new Intent();
+        goBack.putExtra("newword", newword);
+        goBack.putExtra("newdefn", newdefn);
+        setResult(RESULT_OK, goBack);
+    }catch(Exception e){
+
+    }
         finish();
     }
 }
