@@ -23,6 +23,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
 
+
+    <Button
+        android:layout_marginTop="20sp"
+        android:id="@+id/next"
+        android:text="next"
+        android:textStyle="bold|italic"
+        android:onClick="next_button"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <Button
         android:layout_marginTop="20sp"
         android:layout_gravity="center"

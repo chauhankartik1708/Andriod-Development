@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,9 @@ public class MainActivity extends SimpleActivity {
     private Map<String,String> dictionary;
     private List<String> words;
     private void chooseWords(){
+        $LV(R.id.mylist).setVisibility(View.VISIBLE);
+        Button nxt = (Button)findViewById(R.id.next);
+        nxt.setVisibility(View.GONE);
         Random randy = new Random();
         int randomIndex = randy.nextInt(words.size());
         String theWord = words.get(randomIndex);
@@ -73,6 +77,9 @@ public class MainActivity extends SimpleActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        $LV(R.id.mylist).setVisibility(View.VISIBLE);
+        Button nxt = (Button)findViewById(R.id.next);
+        nxt.setVisibility(View.GONE);
 
         setTraceLifecycle(true);
         points = 0;
@@ -130,11 +137,18 @@ public class MainActivity extends SimpleActivity {
                         prefsEditor.apply();
                     }
                     toast("AWESOME ! Score = " + points + ", HighScore = " + highScore);
+                    chooseWords();
                 }else{
                     points--;
-                    toast("Chutiya Hai kya ! Score = " + points + ", HighScore = " + highScore);
+                    toast("Nope ! Score = " + points + ", HighScore = " + highScore);
+                    $LV(R.id.mylist).setVisibility(View.INVISIBLE);
+                    Button nxt = (Button)findViewById(R.id.next);
+                    nxt.setText(correctDefn);
+                    nxt.setVisibility(View.VISIBLE);
+
+
                 }
-                chooseWords();
+
             }
 
 
@@ -168,5 +182,9 @@ public class MainActivity extends SimpleActivity {
             mp.start();
             btn.setText("Mute ON");
         }
+    }
+
+    public void next_button(View view) {
+        chooseWords();
     }
 }
