@@ -94,7 +94,7 @@ public class MainActivity extends SimpleActivity {
         SharedPreferences prefs = getSharedPreferences("myprefs",MODE_PRIVATE);
         highScore = prefs.getInt("highScore",0);
 
-        mp = MediaPlayer.create(this, R.raw.raja);
+        mp = MediaPlayer.create(this, R.raw.migente);
         mp.start();
     }
 
