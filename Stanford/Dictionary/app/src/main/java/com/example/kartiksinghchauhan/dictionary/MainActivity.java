@@ -96,18 +96,21 @@ public class MainActivity extends SimpleActivity {
 
         mp = MediaPlayer.create(this, R.raw.migente);
         mp.start();
+        mp.setLooping(true);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mp.pause();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mp.start();
+        mp.setLooping(true);
     }
 
     @Override
@@ -180,6 +183,7 @@ public class MainActivity extends SimpleActivity {
             btn.setText("Mute OFF");
         }else if(bttn.equals("Mute OFF")){
             mp.start();
+            mp.setLooping(true);
             btn.setText("Mute ON");
         }
     }
