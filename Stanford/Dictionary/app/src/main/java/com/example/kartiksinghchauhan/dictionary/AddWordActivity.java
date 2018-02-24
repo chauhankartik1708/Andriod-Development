@@ -18,21 +18,25 @@ public class AddWordActivity extends SimpleActivity {
         setTraceLifecycle(true);
     }
 
-    public void addThisWordClick(View view){
+    public void addThisWordClick(View view) {
         String newword = $ET(R.id.new_word).getText().toString();
         String newdefn = $ET(R.id.new_defn).getText().toString();
+        if (!newword.isEmpty() && !newdefn.isEmpty()) {
+            PrintStream output = new PrintStream(openFileOutput("added_words.txt", MODE_PRIVATE | MODE_APPEND));
+            output.println(newword + "@" + newdefn);
+            output.close();
+            try {
+                Intent goBack = new Intent();
+                goBack.putExtra("newword", newword);
+                goBack.putExtra("newdefn", newdefn);
+                setResult(RESULT_OK, goBack);
+            } catch (Exception e) {
 
-        PrintStream output = new PrintStream(openFileOutput("added_words.txt",MODE_PRIVATE | MODE_APPEND));
-        output.println(newword + "@" + newdefn);
-        output.close();
-    try {
-        Intent goBack = new Intent();
-        goBack.putExtra("newword", newword);
-        goBack.putExtra("newdefn", newdefn);
-        setResult(RESULT_OK, goBack);
-    }catch(Exception e){
+            }
+            finish();
 
-    }
-        finish();
+        } else {
+            toast("These fields can't be empty");
+        }
     }
 }
