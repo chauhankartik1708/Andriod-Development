@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +20,7 @@ public class Second extends AppCompatActivity {
     Button button;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference;
 
     private EditText newword,newdefn;
@@ -38,6 +39,10 @@ public class Second extends AppCompatActivity {
 
         button = (Button)findViewById(R.id.logout);
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        TextView welcome = (TextView)findViewById(R.id.welcome);
+        welcome.setText("Welcome " + user.getEmail());
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -79,5 +84,6 @@ public class Second extends AppCompatActivity {
 
         databaseReference.child(user.getUid()).setValue(userInformation);
         Toast.makeText(Second.this,"Information Saved",Toast.LENGTH_SHORT).show();
+
     }
 }

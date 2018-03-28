@@ -9,6 +9,7 @@ class UserInformation {
     }
 
     public UserInformation(String word,String defn){
-
+    this.word = word;
+    this.defn = defn;
     }
 }
