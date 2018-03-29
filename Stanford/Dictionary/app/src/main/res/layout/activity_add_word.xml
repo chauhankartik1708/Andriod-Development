@@ -29,19 +29,36 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <EditText
-                android:id="@+id/new_word"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter the new word here"
-                android:text="" />
+                android:textColorHint="@color/DarkRed">
 
-            <EditText
-                android:id="@+id/new_defn"
+
+                <EditText
+                    android:id="@+id/new_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter new word"
+                    android:text="" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter its definition here"
-                android:text="" />
+                android:textColorHint="@color/DarkRed"
+                >
+
+                <EditText
+                    android:id="@+id/new_defn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter its definition"
+                    android:text="" />
+            </android.support.design.widget.TextInputLayout>
+
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
