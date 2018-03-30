@@ -55,7 +55,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="-------------------------------------------------OR-------------------------------------------------" />
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:text="------------------------------------------------OR---------------------------------------------" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign"
@@ -63,6 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         >
 
     </com.google.android.gms.common.SignInButton>
