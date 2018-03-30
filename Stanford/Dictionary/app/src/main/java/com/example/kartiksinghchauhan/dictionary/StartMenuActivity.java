@@ -1,12 +1,14 @@
 package com.example.kartiksinghchauhan.dictionary;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +21,28 @@ public class StartMenuActivity extends SimpleActivity {
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
     private static final int REQ_CODE_ADD_WORD = 1234;
+
+    private Boolean exit = false;
+    @Override
+    public void onBackPressed() {
+        if (exit) {
+            finish(); // finish activity
+        } else {
+            Toast.makeText(this, "Press Back again to Exit.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
+        }
+
+    }
+
+
 
     @Override
     protected void onStart() {
