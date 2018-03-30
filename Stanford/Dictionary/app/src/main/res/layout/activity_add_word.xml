@@ -54,7 +54,7 @@
                     android:id="@+id/new_defn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter its definition"
+                    android:hint="Enter definition"
                     android:text="" />
             </android.support.design.widget.TextInputLayout>
 
