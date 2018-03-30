@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
     android:orientation="vertical"
-    tools:context=".SignUpActivity">
+    tools:context=".Register">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -23,6 +23,7 @@
         android:textColorHint="@color/White">
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email" />
@@ -36,20 +37,11 @@
         android:textColorHint="@color/White">
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password" />
     </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/mybutton"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:text="LOGIN" />
 
     <Button
         android:id="@+id/register"
@@ -58,34 +50,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/mybutton"
         android:padding="@dimen/activity_horizontal_margin"
-        android:text="Not Registered Yet ....Register Here !"
-        android:background="@null"
-        android:textColor="@color/Yellow"
-        android:textSize="13dp"
-        />
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        android:text="------------------------------------------------OR---------------------------------------------" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        >
-
-    </com.google.android.gms.common.SignInButton>
+        android:text="REGISTER" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -95,4 +62,5 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="40dp"
         android:visibility="gone" />
+
 </LinearLayout>

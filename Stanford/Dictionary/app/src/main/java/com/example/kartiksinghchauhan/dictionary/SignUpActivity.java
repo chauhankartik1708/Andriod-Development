@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
     SignInButton button;
     FirebaseAuth mAuth;
     ProgressBar progressbar;
+    Button register;
     private static final int RC_SIGN_IN = 1234;
     GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -69,9 +71,18 @@ public class SignUpActivity extends AppCompatActivity {
                 .build();
 
         button = (SignInButton) findViewById(R.id.sign);
+        register = (Button)findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
         progressbar = (ProgressBar)findViewById(R.id.progressBar);
         progressbar.setVisibility(View.GONE);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this,Register.class);
+                startActivity(intent);
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
