@@ -44,7 +44,6 @@ public class Second extends AppCompatActivity {
         TextView welcome = (TextView)findViewById(R.id.welcome);
         welcome.setText("Welcome " + user.getEmail());
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         newword = (EditText)findViewById(R.id.new_word);
         newdefn = (EditText)findViewById(R.id.new_defn);
@@ -75,14 +74,13 @@ public class Second extends AppCompatActivity {
     }
 
     private void saveWord(){
+        FirebaseUser user = mAuth.getCurrentUser();
         String word = newword.getText().toString().trim();
         String defn = newdefn.getText().toString().trim();
+        databaseReference = database.getReference("Users").child(user.getUid()).child(word);
 
-        UserInformation userInformation = new UserInformation(word,defn);
 
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        databaseReference.child(user.getUid()).setValue(userInformation);
+        databaseReference.child("defn").setValue(defn);
         Toast.makeText(Second.this,"Information Saved",Toast.LENGTH_SHORT).show();
 
     }

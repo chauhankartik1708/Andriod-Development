@@ -25,8 +25,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import stanford.androidlib.SimpleActivity;
 
-public class SignUpActivity extends AppCompatActivity {
+
+public class SignUpActivity extends SimpleActivity {
     SignInButton button;
     FirebaseAuth mAuth;
     ProgressBar progressbar;
@@ -64,6 +66,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        setTraceLifecycle(true);
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
