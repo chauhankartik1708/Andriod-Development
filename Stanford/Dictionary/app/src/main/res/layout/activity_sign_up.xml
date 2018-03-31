@@ -29,6 +29,7 @@
             android:textColorHint="@color/White">
 
             <EditText
+                android:id="@+id/emailfield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email" />
@@ -42,12 +43,14 @@
             android:textColorHint="@color/White">
 
             <EditText
+                android:id="@+id/passwordfield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
+            android:id="@+id/loginbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"

@@ -5,9 +5,11 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -29,14 +31,20 @@ import stanford.androidlib.SimpleActivity;
 
 
 public class SignUpActivity extends SimpleActivity {
+
+
+    Button Login;
     SignInButton button;
     FirebaseAuth mAuth;
     ProgressBar progressbar;
     Button register;
+    EditText ETemail,ETpassword;
     private static final int RC_SIGN_IN = 1234;
     GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth.AuthStateListener mAuthListener;
     private Boolean exit = false;
+
+
     @Override
     public void onBackPressed() {
         if (exit) {
@@ -74,8 +82,12 @@ public class SignUpActivity extends SimpleActivity {
                 .requestEmail()
                 .build();
 
+
+        ETemail = (EditText)findViewById(R.id.emailfield);
+        ETpassword = (EditText)findViewById(R.id.passwordfield);
         button = (SignInButton) findViewById(R.id.sign);
         register = (Button)findViewById(R.id.register);
+        Login = (Button)findViewById(R.id.loginbtn);
         mAuth = FirebaseAuth.getInstance();
         progressbar = (ProgressBar)findViewById(R.id.progressBar);
         progressbar.setVisibility(View.GONE);
@@ -105,6 +117,51 @@ public class SignUpActivity extends SimpleActivity {
             }
         };
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = ETemail.getText().toString();
+                final String password = ETpassword.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                progressbar.setVisibility(View.VISIBLE);
+
+                //authenticate user
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                progressbar.setVisibility(View.GONE);
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    if (password.length() < 6) {
+                                        Toast.makeText(SignUpActivity.this,"Password length should be of minimum 6 characters",
+                                                Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(SignUpActivity.this, "Authentication Failed", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Intent intent = new Intent(SignUpActivity.this, StartMenuActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
+            }
+        });
 
 
     }
