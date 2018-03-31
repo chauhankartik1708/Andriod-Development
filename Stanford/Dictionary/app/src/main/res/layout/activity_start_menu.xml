@@ -18,19 +18,26 @@
         android:textStyle="italic"
         />
     <Button
+        android:background="@drawable/mybutton"
         android:layout_marginTop="20sp"
         android:text="Play Game !"
         android:onClick="playTheGameClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        />
 
     <Button
+        android:background="@drawable/mybutton"
         android:text="Add a new word"
         android:onClick="addANewWordClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        />
 
     <Button
+        android:background="@drawable/mybutton"
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
